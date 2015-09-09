@@ -1,0 +1,12 @@
+#忽略mac文件系统生成文件
+.DS_Store
+#忽略.svn
+*.svn
+#忽略编译生成临时文件
+*.apk
+*.class
+*.settings/
+lint.xml
+bin/
+gen/
+proguard/
