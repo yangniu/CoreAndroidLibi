@@ -55,7 +55,7 @@ public abstract class AbsListBaseFragment<T> extends AbsBaseFragment implements
 	}
 	protected void initView(View v) {
 
-		mlistview = (PullToRefreshListView) v.findViewById(R.id.common_listview);
+		mlistview = (PullToRefreshListView) v.findViewById(R.id.listview);
 		mlistview.setShowIndicator(false);
 		mlistview.addFooterView();
 		View headerView=getListHeaderView();

@@ -11,7 +11,7 @@
         />
 	<!-- 列表展示数据 android:overScrollMode="never"  解决魅族列表悬停问题-->
 	<com.core.android.widget.pulltorefresh.PullToRefreshListView
-	    android:id="@+id/common_listview"
+	    android:id="@+id/listview"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
 	    android:cacheColorHint="#00000000"

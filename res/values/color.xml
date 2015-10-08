@@ -4,4 +4,6 @@
     <color name="background_tab_pressed">#f1f1f1</color>
     <color name="_999999">#999999</color>
     <color name="_aaaaaa">#aaaaaa</color>
+    <color name="btn_selector_normal">#fb9c20</color>
+    <color name="btn_selector_pressed">#ff6a21</color>
 </resources>

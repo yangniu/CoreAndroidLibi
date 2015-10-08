@@ -24,13 +24,13 @@
                 android:id="@+id/expand_dialog_title_image"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:visibility="gone"
                 android:layout_alignParentLeft="true" />
 
             <TextView
                 android:id="@+id/expand_dialog_title_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_marginLeft="10dip"
                 android:layout_toRightOf="@id/expand_dialog_title_image"
                 android:text="@string/expand_base_dialog_title"
