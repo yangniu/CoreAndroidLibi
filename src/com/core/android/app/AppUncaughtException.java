@@ -9,12 +9,12 @@
 
 package com.core.android.app;
 
-import java.lang.Thread.UncaughtExceptionHandler;
-
 import android.content.Context;
 import android.util.Log;
 
 import com.lidroid.xutils.util.LogUtils;
+
+import java.lang.Thread.UncaughtExceptionHandler;
 
 /**
  * ClassName:AppUncaughtException <br/>
@@ -55,7 +55,7 @@ public class AppUncaughtException implements UncaughtExceptionHandler {
 			e.printStackTrace();
 			Log.e(getClass().getSimpleName(), e.getStackTrace().toString());
 		}
-		android.os.Process.killProcess(android.os.Process.myPid());
+//		android.os.Process.killProcess(android.os.Process.myPid());
 	}
 
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/expand_dialog_list_view"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:cacheColorHint="#00000000"
+    android:divider="@color/_aaaaaa"
+    android:dividerHeight="0.5dp"
+    android:fadeScrollbars="true"
+    android:fadingEdge="none"
+    android:listSelector="@color/transparent"
+    android:footerDividersEnabled="false"
+    android:scrollingCache="false" />
+<!-- From: file:/Users/yangboqing/Documents/易装天下相关/yztxspace/CoreAndroidLibi/res/layout/expand_dialog_list_part.xml --><!-- From: file:/Users/yangboqing/Documents/易装天下相关/yztxspace/CoreAndroidLibi/build/intermediates/bundles/debug/res/layout/expand_dialog_list_part.xml -->
