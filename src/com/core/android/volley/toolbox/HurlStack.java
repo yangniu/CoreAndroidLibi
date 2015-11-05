@@ -130,7 +130,7 @@ public class HurlStack implements HttpStack {
      * @param connection
      * @return an HttpEntity populated with data from <code>connection</code>.
      */
-    private static HttpEntity entityFromConnection(HttpURLConnection connection) {
+    protected static HttpEntity entityFromConnection(HttpURLConnection connection) {
         BasicHttpEntity entity = new BasicHttpEntity();
         InputStream inputStream;
         try {
@@ -158,7 +158,7 @@ public class HurlStack implements HttpStack {
      * @return an open connection
      * @throws IOException
      */
-    private HttpURLConnection openConnection(URL url, Request<?> request) throws IOException {
+    protected HttpURLConnection openConnection(URL url, Request<?> request) throws IOException {
         HttpURLConnection connection = createConnection(url);
 
         int timeoutMs = request.getTimeoutMs();
