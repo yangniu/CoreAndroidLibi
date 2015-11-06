@@ -35,6 +35,13 @@ public class CommonServiceUtil {
 		}
 		return false;
 	}
+	public static Boolean showInputMethod(Context context, View v) {
+		InputMethodManager imm = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);  
+		if (imm != null) {
+			return imm.showSoftInput(v,InputMethodManager.SHOW_FORCED);
+		}
+		return false;
+	}
 	/**
 	 * 判断键盘是否激活
 	 * @param context
