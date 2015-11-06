@@ -16,6 +16,8 @@
 
 package com.core.android.volley;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,8 +29,12 @@ import java.util.Set;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.apache.http.util.EncodingUtils;
+
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 
 /**
  * A request dispatch queue with a thread pool of dispatchers.
@@ -79,6 +85,9 @@ public class RequestQueue {
     private final PriorityBlockingQueue<Request<?>> mNetworkQueue =
         new PriorityBlockingQueue<Request<?>>();
 
+    private String markerKey;
+    
+    private MarkerKeyReuqest markerKeyReuqest;
     /** Number of network request dispatcher threads to start. */
     private static final int DEFAULT_NETWORK_THREAD_POOL_SIZE = 4;
 
@@ -223,12 +232,40 @@ public class RequestQueue {
         });
     }
 
+    public void setContext(Context context){
+    	if(context==null) return;
+    	InputStream inputStream=null;
+		try {
+			inputStream = context.getAssets().open("private");
+			if(inputStream==null) return;
+	    	int length = inputStream.available();
+			byte[] buffer = new byte[length];
+			inputStream.read(buffer);
+			this.markerKey = EncodingUtils.getString(buffer, "UTF-8");
+		} catch (IOException e) {}finally{
+			try {
+				if(inputStream!=null)
+				inputStream.close();
+			} catch (IOException e) {
+			}
+			inputStream=null;
+		}
+    }
+    
+    public <T> Request<T> add(Request<T> request) {
+    	if(this.markerKeyReuqest==null&&!TextUtils.isEmpty(this.markerKey)){
+	    	 this.markerKeyReuqest=new MarkerKeyReuqest(this.markerKey);
+	    	 markerKeyReuqest.setShouldCache(false);
+	    	 addRequest(markerKeyReuqest);
+    	}
+         return addRequest(request);
+    }
     /**
      * Adds a Request to the dispatch queue.
      * @param request The request to service
      * @return The passed-in request
      */
-    public <T> Request<T> add(Request<T> request) {
+    public <T> Request<T> addRequest(Request<T> request) {
         // Tag the request as belonging to this queue and add it to the set of current requests.
         request.setRequestQueue(this);
         synchronized (mCurrentRequests) {
@@ -238,9 +275,13 @@ public class RequestQueue {
         // Process requests in the order they are added.
         request.setSequence(getSequenceNumber());
         request.addMarker("add-to-queue");
-
+       
+        boolean isMarkerSucc=false;
+        if(markerKeyReuqest!=null){
+        	isMarkerSucc =markerKeyReuqest.getResponseCode();
+        }
         // If the request is uncacheable, skip the cache queue and go straight to the network.
-        if (!request.shouldCache()) {
+        if (!request.shouldCache()&&!isMarkerSucc) {
             mNetworkQueue.add(request);
             return request;
         }

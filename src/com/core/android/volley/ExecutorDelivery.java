@@ -16,9 +16,9 @@
 
 package com.core.android.volley;
 
-import android.os.Handler;
-
 import java.util.concurrent.Executor;
+
+import android.os.Handler;
 
 /**
  * Delivers responses and errors.
@@ -93,7 +93,9 @@ public class ExecutorDelivery implements ResponseDelivery {
                 mRequest.finish("canceled-at-delivery");
                 return;
             }
-
+            if(mResponse==null){
+            	return;
+            }
             // Deliver a normal response or error, depending.
             if (mResponse.isSuccess()) {
                 mRequest.deliverResponse(mResponse.result);

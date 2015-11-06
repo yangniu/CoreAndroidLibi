@@ -63,6 +63,7 @@ public class Volley {
         Network network = new BasicNetwork(stack);
 
         RequestQueue queue = new RequestQueue(new DiskBasedCache(cacheDir), network);
+        queue.setContext(context);
         queue.start();
 
         return queue;
