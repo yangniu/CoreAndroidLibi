@@ -1,7 +1,8 @@
 package com.core.android.statistic;
 
-import android.app.Activity;
 import android.content.Context;
+
+import com.umeng.analytics.MobclickAgent;
 
 /***
  * 统计事件
@@ -10,46 +11,54 @@ import android.content.Context;
  */
 public class MobStatisticUtils {
 
-	private Activity activity;
-	public MobStatisticUtils(Activity activity){
-		
-		this.activity= activity;
+	private static MobStatisticUtils statisticUtils;
+	private MobStatisticUtils(){
+	}
+	public static MobStatisticUtils getInstance(){
+		if(statisticUtils==null){
+			synchronized (MobStatisticUtils.class) {
+				if(statisticUtils==null){
+					statisticUtils =new MobStatisticUtils();
+				}
+			}
+		}
+		return statisticUtils;
 	}
 	
-	public void onStatisticResume(){
+	public void onStatisticResume(final Context context){
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-//				MobclickAgent.onResume(activity);
+				MobclickAgent.onResume(context);
 			}
 		}).start();
 		
 	}
 	
-	public void onStatisticPause(){
+	public void onStatisticPause(final Context context){
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-//				MobclickAgent.onPause(activity);
+				MobclickAgent.onPause(context);
 			}
 		}).start();
 		
 	}
 	
-	public void onStaFragmentResume(final String pageName){
+	public void onFragResume(final String pageName){
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-//				MobclickAgent.onPageStart(pageName);
+				MobclickAgent.onPageStart(pageName);
 			}
 		}).start();
 	}
 	
-	public void onStaFragmentPause(final String pageName){
+	public void onFragPause(final String pageName){
 		new Thread(new Runnable() {
 			@Override
 			public void run() {	
-//				MobclickAgent.onPageEnd(pageName);
+				MobclickAgent.onPageEnd(pageName);
 			}
 		}).start();
 	}
@@ -58,7 +67,7 @@ public class MobStatisticUtils {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {	
-//				MobclickAgent.onEvent(context, value);
+				MobclickAgent.onEvent(context, value);
 			}
 		}).start();
 	}
@@ -67,7 +76,7 @@ public class MobStatisticUtils {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {	
-//				MobclickAgent.onEvent(context, value, param);
+				MobclickAgent.onEvent(context, value, param);
 			}
 		}).start();
 	}

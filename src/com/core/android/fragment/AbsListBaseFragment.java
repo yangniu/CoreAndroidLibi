@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,7 +20,6 @@ public abstract class AbsListBaseFragment<T> extends AbsBaseFragment implements
 		OnItemClickListener, PullToRefreshBase.OnRefreshListener<ListView>, PullToRefreshBase.OnLastItemVisibleListener {
 	protected PullToRefreshListView mlistview;
 	private View viewLayout = null;
-	private MobStatisticUtils mobStatisticUtils;
 	protected LinearLayout  emptyLayout;
 	protected ImageView emptyImgView;
 	protected TextView referView1;
@@ -30,8 +28,6 @@ public abstract class AbsListBaseFragment<T> extends AbsBaseFragment implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
-		mobStatisticUtils=new MobStatisticUtils(getActivity());
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,13 +41,13 @@ public abstract class AbsListBaseFragment<T> extends AbsBaseFragment implements
 	@Override
 	public void onResume() {
 		super.onResume();
-		mobStatisticUtils.onStaFragmentResume(getClass().getSimpleName());
+		MobStatisticUtils.getInstance().onFragResume(getClass().getSimpleName());
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
-		mobStatisticUtils.onStaFragmentPause(getClass().getSimpleName());
+		MobStatisticUtils.getInstance().onFragPause(getClass().getSimpleName());
 	}
 	protected void initView(View v) {
 
