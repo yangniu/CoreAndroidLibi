@@ -15,26 +15,6 @@
         <attr name="pstsTextAllCaps" format="boolean" />
     </declare-styleable>
     
-    <declare-styleable name="ViewFlow">
-        <attr name="sidebuffer" format="integer" />
-    </declare-styleable>
-    <declare-styleable name="CircleFlowIndicator">  
-        <attr name="activeColor" format="color" />  
-        <attr name="inactiveColor" format="color" />  
-        <attr name="radius" format="dimension" />  
-        <attr name="centered" format="boolean" /> 
-        <attr name="fadeOut" format="integer" />  
-        <attr name="inactiveType">  
-            <flag name="stroke" value="0" />  
-            <flag name="fill" value="1" />  
-        </attr>  
-        <attr name="activeType">  
-            <flag name="stroke" value="0" />  
-            <flag name="fill" value="1" />  
-        </attr>  
-        <attr name="circleSeparation" format="dimension" />  
-        <attr name="activeRadius" format="dimension" />  
-    </declare-styleable> 
     <declare-styleable name="TagFlowLayout">
         <attr name="auto_select_effect" format="boolean"></attr>
         <attr name="max_select" format="integer"></attr>

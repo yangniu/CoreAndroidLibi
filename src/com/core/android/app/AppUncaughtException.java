@@ -48,13 +48,12 @@ public class AppUncaughtException implements UncaughtExceptionHandler {
 	public void uncaughtException(Thread thread, Throwable ex) {
 		LogUtils.e("crash");
 		ex.printStackTrace();
-
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			Log.e(getClass().getSimpleName(), e.getStackTrace().toString());
-		}
+//		try {
+//			Thread.sleep(3000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//			Log.e(getClass().getSimpleName(), e.getStackTrace().toString());
+//		}
 		android.os.Process.killProcess(android.os.Process.myPid());
 	}
 
