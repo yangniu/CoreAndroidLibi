@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StreamCorruptedException;
 import java.util.zip.GZIPInputStream;
@@ -270,5 +271,40 @@ public class FileUtil {
 			}
 		}
 		return buffer;
+	}
+	/**
+	 * 读取数据
+	 * 
+	 * @param instr
+	 * @param encodeStr
+	 * @return
+	 * @throws Exception
+	 */
+
+	public static String read(File file) throws Exception {
+		FileInputStream input = new FileInputStream(file);
+		return read(input, "utf-8");
+	}
+	/**
+	 * 读取数据
+	 * 
+	 * @param instr
+	 * @param encodeStr
+	 * @return
+	 * @throws Exception
+	 */
+
+	public static String read(InputStream instr, String encodeStr) throws Exception {
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		int len = -1;
+		while ((len = instr.read(buffer)) != -1) {
+			out.write(buffer, 0, len);
+		}
+		byte[] data = out.toByteArray();
+		out.close();
+		instr.close();
+		instr=null;
+		return new String(data, encodeStr);
 	}
 }
